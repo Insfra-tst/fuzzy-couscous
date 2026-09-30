@@ -103,7 +103,7 @@ final class GameView: UIView {
 
         context.saveGState()
         context.translateBy(x: 105, y: CGFloat(game.birdY))
-        context.rotate(CGFloat(max(-0.35, min(0.9, game.velocity / 700))))
+        context.rotate(by: CGFloat(max(-0.35, min(0.9, game.velocity / 700))))
         ellipse(CGRect(x: -20, y: -17, width: 40, height: 34), ink)
         ellipse(CGRect(x: -17, y: -14, width: 34, height: 28), UIColor(red: 1, green: 0.76, blue: 0.23, alpha: 1))
         ellipse(CGRect(x: -20, y: 0, width: 22, height: 13), UIColor(red: 0.97, green: 0.54, blue: 0.23, alpha: 1))
