@@ -1,0 +1,26 @@
+name: Build IPA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test game rules
+        run: bash scripts/test.sh
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Build unsigned device IPA
+        run: bash scripts/build-ipa.sh
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: PocketFlap-unsigned-IPA
+          path: dist/PocketFlap-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
